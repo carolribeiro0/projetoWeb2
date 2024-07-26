@@ -42,7 +42,7 @@
 										<option value="1">Acessórios</option>
 									</select>
 									<input class="input" placeholder="Pesquise aqui...">
-									<button class="search-btn">Search</button>
+									<button class="search-btn">Pesquisar</button>
 								</form>
 							</div>
 						</div>
@@ -53,10 +53,10 @@
 							<div class="header-ctn">
 								<!-- Cart -->
 								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="/carrinhoCompras" aria-expanded="true">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Meu carrinho</span>
-										<div class="qty" th:text="${quantidadeCarrinho}">0</div>
+										<div class="qty">3</div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
@@ -86,10 +86,6 @@
 											<small>3 Item(s) selected</small>
 											<h5>SUBTOTAL: $2940.00</h5>
 										</div>
-										<div class="cart-btns">
-											<a th:href="@{/carrinhoCompras}">Ver Carrinho</a>
-											<a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-										</div>										
 									</div>
 								</div>
 								<!-- /Cart -->
@@ -113,7 +109,22 @@
 			<!-- /MAIN HEADER -->
 		</header>
 		<!-- /HEADER -->
-
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Checkout</h3>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
 		<div class="section">
@@ -122,63 +133,73 @@
 				<!-- row -->
 				<div class="row">
 
-					<!-- section title -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">Produtos disponíveis</h3>
-							<div class="section-nav">
-								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">Alta cilindrada</a></li>
-									<li><a data-toggle="tab" href="#tab1">Baixa cilindrada</a></li>
-									<li><a data-toggle="tab" href="#tab1">Acessórios</a></li>
-								</ul>
+					<div class="col-md-7">
+						<!-- Shipping address -->
+						<div class="shipping-address">
+							<div class="section-title">
+								<h3 class="title">Endereço de entrega</h3>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="first-name" placeholder="Nome">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="last-name" placeholder="Sobrenome">
+							</div>
+							<div class="form-group">
+								<input class="input" type="email" name="email" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="address" placeholder="Endereço">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="city" placeholder="Cidade">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="country" placeholder="País">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="zip-code" placeholder="CEP">
+							</div>
+							<div class="form-group">
+								<input class="input" type="tel" name="tel" placeholder="Telefone">
 							</div>
 						</div>
-					</div>
-					<!-- /section title -->
+						<!-- /Shipping-address -->
 
-					<!-- Products tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-										<!-- product -->
-										<div th:each="moto : ${motos}" class="product">
-											<div class="product-img">
-												<img th:src="@{'/uploads/' + ${moto.imageUri}}" alt="${moto.marca}">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-													<span class="new">NEW</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-brand" th:text="${moto.marca}">Brand</p>
-												<h3 class="product-name"><a href="#" th:text="${moto.modelo}">Product Name</a></h3>
-												<h4 class="product-price" th:text="${moto.preco}">Price</h4> <!-- Exibindo o preço -->
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a th:href="@{/adicionarCarrinho(id=${moto.id})}" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</a>
-											</div>
-										</div>
-										<!-- /product -->
-									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
+					</div>
+
+					<!-- Order Details -->
+					<div class="col-md-5 order-details">
+						<div class="section-title text-center">
+							<h3 class="title">Seu pedido</h3>
+						</div>
+						<div class="order-summary">
+							<div class="order-col">
+								<div><strong>PRODUTO</strong></div>
+								<div><strong>TOTAL</strong></div>
+							</div>
+							<div class="order-products">
+								<div class="order-col">
+									<div>1x Product Name Goes Here</div>
+									<div>R$980.00</div>
 								</div>
-								<!-- /tab -->
+								<div class="order-col">
+									<div>2x Product Name Goes Here</div>
+									<div>R$980.00</div>
+								</div>
+							</div>
+							<div class="order-col">
+								<div>Envio</div>
+								<div><strong>GRATUITO</strong></div>
+							</div>
+							<div class="order-col">
+								<div><strong>TOTAL</strong></div>
+								<div><strong class="order-total">R$2940.00</strong></div>
 							</div>
 						</div>
+						<a href="#" class="primary-btn order-submit">Finalizar compra</a>
 					</div>
-					<!-- Products tab & slick -->
-
+					<!-- /Order Details -->
 				</div>
 				<!-- /row -->
 			</div>
