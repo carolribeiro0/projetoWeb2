@@ -1,5 +1,5 @@
 package com.example.demo.domain;
-
+import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,12 +38,16 @@ public class Moto {
 
     @NotBlank(message = "A capacidade do motor não pode estar vazia")
     private String capacidadeMotor;
-
-    private boolean isDeleted = false;
+    
+    private LocalDateTime isDeleted;
 
     private String imageUri;
-
+   
     public void regrasDeNegocioParaCadastro() {
         marca.toUpperCase();
+    }
+    
+    public void softDelete() {
+    	this.isDeleted = LocalDateTime.now();
     }
 }

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-dollar"></i> BR</a></li>
+						<li><a href="#"><i class="fa fa-user-o"></i> Minha conta</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /TOP HEADER -->
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="./img/logo.png" alt="">
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+								<form>
+									<select class="input-select">
+										<option value="0">Todas categorias</option>
+										<option value="1">Alta cilindrada</option>
+										<option value="1">Baixa cilindrada</option>
+										<option value="1">Acessórios</option>
+									</select>
+									<input class="input" placeholder="Pesquise aqui...">
+									<button class="search-btn">Search</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Cart -->
+								<div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Meu carrinho</span>
+										<div class="qty">3</div>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
+											<div class="product-widget">
+												<div class="product-img">
+													<img src="./img/product01.png" alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="#">product name goes here</a></h3>
+													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+												</div>
+												<button class="delete"><i class="fa fa-close"></i></button>
+											</div>
+
+											<div class="product-widget">
+												<div class="product-img">
+													<img src="./img/product02.png" alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="#">product name goes here</a></h3>
+													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+												</div>
+												<button class="delete"><i class="fa fa-close"></i></button>
+											</div>
+										</div>
+										<div class="cart-summary">
+											<small>3 Item(s) selected</small>
+											<h5>SUBTOTAL: $2940.00</h5>
+										</div>
+										<div class="cart-btns">
+											<a href="#">View Cart</a>
+											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Produtos disponíveis</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+									<li class="active"><a data-toggle="tab" href="#tab1">Alta cilindrada</a></li>
+									<li><a data-toggle="tab" href="#tab1">Baixa cilindrada</a></li>
+									<li><a data-toggle="tab" href="#tab1">Acessórios</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="./img/product01.png" alt="">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">Category</p>
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
+											</div>
+										</div>
+										<!-- /product -->
+
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="./img/product02.png" alt="">
+												<div class="product-label">
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">Category</p>
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinhot</button>
+											</div>
+										</div>
+										<!-- /product -->
+
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="./img/product03.png" alt="">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">Category</p>
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
+											</div>
+										</div>
+										<!-- /product -->
+
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="./img/product04.png" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">Category</p>
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
+											</div>
+										</div>
+										<!-- /product -->
+
+										<!-- product -->
+										<div class="product">
+											<div class="product-img">
+												<img src="./img/product05.png" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category">Category</p>
+												<h3 class="product-name"><a href="#">product name goes here</a></h3>
+												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
+											</div>
+										</div>
+										<!-- /product -->
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<footer th:replace="fragments/footer :: footer"></footer>
+	</body>
+</html>
