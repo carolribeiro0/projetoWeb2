@@ -156,7 +156,7 @@
 											<div class="product-body">
 												<p class="product-brand" th:text="${moto.marca}">Brand</p>
 												<h3 class="product-name"><a href="#" th:text="${moto.modelo}">Product Name</a></h3>
-												<h4 class="product-price" th:text="${moto.preco}">Price</h4> <!-- Exibindo o preço -->
+												<h4 class="product-price" th:text="'R$'+${moto.preco}">Price</h4> <!-- Exibindo o preço -->
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>

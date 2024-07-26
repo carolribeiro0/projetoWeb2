@@ -153,14 +153,17 @@
                             </div>
                             <div class="product-body">
                                 <h3 class="product-name" th:text="${moto.modelo}"></h3>
-                                <h4 class="product-price" th:text="'$' + ${moto.preco}"></h4>
+                                <h4 class="product-price" th:text="'R$' + ${moto.preco}"></h4>
                             </div>
-                            <button class="delete"><i class="fa fa-close"></i></button>
+                            <form th:action="@{/removerDoCarrinho}" method="get">
+                                <input type="hidden" name="id" th:value="${moto.id}" />
+                                <button type="submit" class="delete"><i class="fa fa-close"></i></button>
+                            </form>
                         </div>
                     </div>
                     <div class="cart-summary">
                         <small th:text="${quantidadeCarrinho} + ' Item(s) selecionado(s)'"></small>
-                        <h5>SUBTOTAL: <span th:text="'$' + ${carrinho.stream().mapToDouble(moto -> moto.getPreco()).sum()}"></span></h5>
+                        <h5>SUBTOTAL: <span th:text="'R$' + ${subtotal}"></span></h5>
                     </div>
                     <div class="cart-btns">
                         <a href="#">Finalizar Compra <i class="fa fa-arrow-circle-right"></i></a>
