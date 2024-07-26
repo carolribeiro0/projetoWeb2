@@ -10,7 +10,6 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,7 +46,11 @@ public class Moto {
         marca.toUpperCase();
     }
     
-    public void softDelete() {
-    	this.isDeleted = LocalDateTime.now();
+    public void setIsDeleted() {
+        this.isDeleted = LocalDateTime.now();
+    }
+    
+    public LocalDateTime getIsDeleted() {
+        return isDeleted;
     }
 }

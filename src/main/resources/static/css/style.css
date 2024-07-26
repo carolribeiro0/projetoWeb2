@@ -852,6 +852,11 @@ textarea.input {
 	product
 \*----------------------------*/
 
+.products-tabs .tab-pane active {
+  display: flex;
+  flex-direction: column;
+}
+
 .product {
   position: relative;
   margin: 15px 0px;
@@ -1154,6 +1159,7 @@ textarea.input {
 /*----------------------------*\
 	Products slick
 \*----------------------------*/
+
 
 .products-slick .slick-list {
   padding-bottom: 60px;

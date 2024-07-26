@@ -145,116 +145,18 @@
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
-										<div class="product">
+										<div th:each="moto : ${motos}" class="product">
 											<div class="product-img">
-												<img src="./img/product01.png" alt="">
+												<img th:src="@{'/uploads/' + ${moto.imageUri}}" alt="${moto.marca}">
 												<div class="product-label">
 													<span class="sale">-30%</span>
 													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product02.png" alt="">
-												<div class="product-label">
-													<span class="new">NEW</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Adicionar ao carrinhot</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product03.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product04.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Adicionar ao carrinho</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product05.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<p class="product-brand" th:text="${moto.marca}">Brand</p>
+												<h3 class="product-name"><a href="#" th:text="${moto.modelo}">Product Name</a></h3>
+												<h4 class="product-price" th:text="${moto.preco}">Price</h4> <!-- Exibindo o preço -->
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
@@ -276,6 +178,7 @@
 						</div>
 					</div>
 					<!-- Products tab & slick -->
+
 				</div>
 				<!-- /row -->
 			</div>
@@ -283,6 +186,6 @@
 		</div>
 		<!-- /SECTION -->
 
-		<footer th:replace="fragments/footer :: footer"></footer>
+		<footer th:replace="{fragments/footer :: footer}"></footer>
 	</body>
 </html>
