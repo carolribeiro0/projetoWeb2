@@ -24,7 +24,7 @@ public class MotoController {
         this.fileStorageService = fileStorageService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String listAll(Model model) {
         model.addAttribute("motos", motoService.findAllNotDeleted());
         return "principal";
