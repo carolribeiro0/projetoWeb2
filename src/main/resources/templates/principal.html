@@ -49,7 +49,7 @@
 						<!-- /SEARCH BAR -->
 
 						<!-- ACCOUNT -->
-						<div class="col-md-3 clearfix">
+						<div class="col-md-3 clearfix" style>
 							<div class="header-ctn">
 								<!-- Cart -->
 								<div class="dropdown">
@@ -140,22 +140,18 @@
 					<!-- Products tab & slick -->
 					<div class="col-md-12">
 						<div class="row">
-							<div class="products-tabs">
+							<div class="products-tabs" >
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
+									<div class="products-slick" data-nav="#slick-nav-1" style="display:flex; flex-flow:row wrap">
 										<!-- product -->
-										<div th:each="moto : ${motos}" class="product">
+										<div th:each="moto : ${motos}" class="product"  style="width: 30%; margin:10px">
 											<div class="product-img">
 												<img th:src="@{'/uploads/' + ${moto.imageUri}}" alt="${moto.marca}">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-													<span class="new">NEW</span>
-												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-brand" th:text="${moto.marca}">Brand</p>
-												<h3 class="product-name"><a href="#" th:text="${moto.modelo}">Product Name</a></h3>
+												<p class="product-brand" th:text="${moto.marca}">Marca</p>
+												<h3 class="product-name"><a href="#" th:text="${moto.modelo}">Modelo</a></h3>
 												<h4 class="product-price" th:text="'R$'+${moto.preco}">Price</h4> <!-- Exibindo o preço -->
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
