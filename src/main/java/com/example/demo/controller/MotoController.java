@@ -66,23 +66,24 @@ public class MotoController {
 
     @PostMapping("/salvar")
     public ModelAndView processCadastro(@ModelAttribute @Valid Moto moto, Errors errors, @RequestParam("file") MultipartFile file) {
-
+    
         if (errors.hasErrors()) {
             return new ModelAndView("cadastroMotos");
         }
-
+    
         if (!file.isEmpty()) {
             String filename = file.getOriginalFilename();
             fileStorageService.save(file);
             moto.setImageUri(filename);
         }
-
+    
         motoService.create(moto);
-
+    
         ModelAndView modelAndView = new ModelAndView("principal");
         modelAndView.addObject("msg", "Cadastro realizado com sucesso");
         modelAndView.addObject("motos", motoService.findAll());
         return modelAndView;
     }
-
+    
+    
 }

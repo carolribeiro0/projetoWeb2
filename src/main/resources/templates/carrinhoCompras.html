@@ -108,9 +108,10 @@
                         <small th:text="${quantidadeCarrinho} + ' Item(s) selecionado(s)'"></small>
                         <h5>SUBTOTAL: <span th:text="'R$' + ${subtotal}"></span></h5>
                     </div>
-                    <div class="cart-btns">
-                        <a href="#">Finalizar Compra <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+					<div class="cart-btns">
+						<a href="#" th:href="@{/finalizarCompra}">Finalizar Compra <i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+					
                 </div>
                 <!-- /Carrinho de Compras -->
             </div>

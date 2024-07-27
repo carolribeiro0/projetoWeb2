@@ -37,14 +37,13 @@
 						<div class="header-ctn" >
 								<!-- Cart -->
 								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="/carrinhoCompras" aria-expanded="true">
+									<a class="dropdown-toggle" data-toggle="dropdown" href="/verCarrinho" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Meu carrinho</span>
 										<div class="qty" th:text="${quantidadeCarrinho}">0</div>
 									</a>
 								</div>
 								<!-- /Cart -->
-
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -64,6 +63,14 @@
 		</header>
 		<!-- /HEADER -->
 
+		<!-- Mensagem de sucesso -->
+		<div th:if="${msg}" class="alert alert-success">
+		<p th:text="${msg}"></p>
+		</div>
+		<!-- Mensagem Flash -->
+		<div th:if="${message}" class="alert alert-info" role="alert">
+			<span th:text="${message}"></span>
+		</div>
 
 		<!-- SECTION -->
 		<div class="section">
@@ -118,6 +125,20 @@
 		</div>
 		<!-- /SECTION -->
 
+		<script>
+			// Verifica se o cookie de sucesso está definido e redireciona
+			document.addEventListener("DOMContentLoaded", function() {
+				var successCookie = document.cookie.split('; ').find(row => row.startsWith('success='));
+				if (successCookie && successCookie.split('=')[1] === 'true') {
+					// Remove o cookie
+					document.cookie = "success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+					// Redireciona após 3 segundos
+					setTimeout(function() {
+						window.location.href = '/index';
+					}, 3000);
+				}
+			});
+		</script>
 		<footer th:replace="fragments/footer :: footer"></footer>
 	</body>
 </html>
