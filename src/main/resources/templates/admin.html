@@ -51,6 +51,8 @@
                                 <th>Imagem</th>
                                 <th>Marca</th>
                                 <th>Modelo</th>
+                                <th>Ano</th>
+                                <th>Capacidade do motor</th>
                                 <th>Preço</th>
                                 <th>Ações</th>
                             </tr>
@@ -60,6 +62,8 @@
                                 <td><img th:src="@{'/uploads/' + ${moto.imageUri}}" alt="${moto.marca}" style="width: 100px;"></td>
                                 <td th:text="${moto.marca}">Marca</td>
                                 <td th:text="${moto.modelo}">Modelo</td>
+                                <td th:text="${moto.ano}">Ano</td>
+                                <td th:text="${moto.capacidadeMotor}">Capacidade do motor</td>
                                 <td th:text="'R$'+${moto.preco}">Preço</td>
                                 <td>
                                     <a th:href="@{/editar(id=${moto.id})}" class="btn btn-primary">Editar</a>

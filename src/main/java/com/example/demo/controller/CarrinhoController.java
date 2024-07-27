@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,22 +45,29 @@ public class CarrinhoController {
     @GetMapping("/verCarrinho")
     public String exibirCarrinho(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         List<Moto> carrinho = (List<Moto>) session.getAttribute("carrinho");
-    
-        if (carrinho == null || carrinho.isEmpty()) {
 
+        if (carrinho == null || carrinho.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Não existem itens no carrinho");
             return "redirect:/index";
         }
-    
-        model.addAttribute("carrinho", carrinho);
-        model.addAttribute("quantidadeCarrinho", carrinho.size());
-    
+
+        // Filtra itens deletados do carrinho
+        List<Moto> carrinhoFiltrado = carrinho.stream()
+                .filter(moto -> moto.getIsDeleted() == null)
+                .collect(Collectors.toList());
+
+        // Atualiza o carrinho na sessão
+        session.setAttribute("carrinho", carrinhoFiltrado);
+
+        model.addAttribute("carrinho", carrinhoFiltrado);
+        model.addAttribute("quantidadeCarrinho", carrinhoFiltrado.size());
+
         double subtotal = 0.0;
-        for (Moto moto : carrinho) {
+        for (Moto moto : carrinhoFiltrado) {
             subtotal += moto.getPreco();
         }
         model.addAttribute("subtotal", subtotal);
-    
+
         return "carrinhoCompras"; 
     }
     

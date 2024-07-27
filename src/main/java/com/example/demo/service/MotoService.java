@@ -45,6 +45,7 @@ public class MotoService {
         return repository.findAll();
     }
 
+    
     public List<Moto> findAllNotDeleted() {
         List<Moto> motos = repository.findAll().stream()
                 .filter(moto -> moto.getIsDeleted() == null)

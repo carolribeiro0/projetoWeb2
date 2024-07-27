@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- TOP HEADER -->
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-dollar"></i> BR</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Minha conta</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Nome Usuário</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Entrar</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /TOP HEADER -->
+
+        <!-- MAIN HEADER -->
+        <div id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <a href="#" class="logo">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="header-ctn">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/verCarrinho" aria-expanded="true">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Meu carrinho</span>
+                                <div class="qty" th:text="${quantidadeCarrinho}">0</div>
+                            </a>
+                        </div>
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+
+    <!-- Edição de produtos -->
+    <div id="section" style="margin-top: 25px; margin-bottom: 25px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <form th:action="@{/salvar}" th:object="${moto}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" th:field="*{id}" />
+                        <div class="form-group">
+                            <label for="marca">Marca</label>
+                            <input type="text" id="marca" th:field="*{marca}" class="form-control" placeholder="Marca da Moto">
+                            <p th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="modelo">Modelo</label>
+                            <input type="text" id="modelo" th:field="*{modelo}" class="form-control" placeholder="Modelo da Moto">
+                            <p th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="ano">Ano</label>
+                            <input type="number" id="ano" th:field="*{ano}" class="form-control" placeholder="Ano de Fabricação">
+                            <p th:if="${#fields.hasErrors('ano')}" th:errors="*{ano}" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="preco">Preço</label>
+                            <input type="number" step="0.01" id="preco" th:field="*{preco}" class="form-control" placeholder="Preço">
+                            <p th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="capacidadeMotor">Capacidade do Motor</label>
+                            <input type="text" id="capacidadeMotor" th:field="*{capacidadeMotor}" class="form-control" placeholder="Capacidade do Motor">
+                            <p th:if="${#fields.hasErrors('capacidadeMotor')}" th:errors="*{capacidadeMotor}" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Imagem</label>
+                            <input type="file" id="file" name="file" class="form-control" onchange="updateFileName(this)">
+                            <input type="hidden" th:field="*{imageUri}" id="imageUri" name="imageUri" />
+                            <div th:if="${moto.imageUri}" id="current-file-name">
+                                <p>Arquivo atual: <span th:text="${moto.imageUri}"></span></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Edição de produtos -->
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
+>

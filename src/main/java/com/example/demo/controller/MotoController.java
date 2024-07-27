@@ -7,6 +7,7 @@ import com.example.demo.service.MotoService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,11 +75,15 @@ public class MotoController {
             moto.setImageUri(filename);
         }
 
-        motoService.create(moto);
+        if (moto.getId() != null && !moto.getId().isEmpty()) {
+            motoService.update(moto);
+        } else {
+            motoService.create(moto);
+        }
 
         ModelAndView modelAndView = new ModelAndView("principal");
         modelAndView.addObject("msg", "Cadastro realizado com sucesso");
-        modelAndView.addObject("motos", motoService.findAll());
+        modelAndView.addObject("motos", motoService.findAllNotDeleted());
         return modelAndView;
     }
 
@@ -95,4 +100,16 @@ public class MotoController {
         model.addAttribute("msg", "Moto removida com sucesso");
         return "redirect:/index";
     }
+
+    @GetMapping("/editar")
+    public String editarMoto(@RequestParam("id") String id, Model model) {
+        Optional<Moto> motoOpt = motoService.findById(id);
+        if (motoOpt.isPresent()) {
+            Moto moto = motoOpt.get();
+            model.addAttribute("moto", moto);
+            return "editarMoto";
+        } else {
+            return "redirect:/admin?error=Moto not found";
+        }
+}
 }
