@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.validation.Errors;
 
@@ -64,28 +65,26 @@ public class MotoController {
     }
 
     @PostMapping("/salvar")
-    public ModelAndView processCadastro(@ModelAttribute @Valid Moto moto, Errors errors, @RequestParam("file") MultipartFile file) {
+    public String processCadastro(@ModelAttribute @Valid Moto moto, Errors errors, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
-            return new ModelAndView("cadastroMotos");
+            return "cadastroMotos";
         }
-
+    
         if (!file.isEmpty()) {
-            String filename = file.getOriginalFilename();
-            fileStorageService.save(file);
-            moto.setImageUri(filename);
+            String uniqueFilename = fileStorageService.save(file);
+            moto.setImageUri(uniqueFilename);
         }
-
+    
         if (moto.getId() != null && !moto.getId().isEmpty()) {
             motoService.update(moto);
         } else {
             motoService.create(moto);
         }
-
-        ModelAndView modelAndView = new ModelAndView("principal");
-        modelAndView.addObject("msg", "Cadastro realizado com sucesso");
-        modelAndView.addObject("motos", motoService.findAllNotDeleted());
-        return modelAndView;
+    
+        redirectAttributes.addFlashAttribute("msg", "Alteração realizada com sucesso");
+        return "redirect:/admin";
     }
+    
 
     @GetMapping("/admin")
     public String adminPage(Model model) {
@@ -95,21 +94,21 @@ public class MotoController {
     }
 
     @GetMapping("/deletar")
-    public String deleteMoto(@RequestParam("id") String id, Model model) {
+    public String deleteMoto(@RequestParam("id") String id, RedirectAttributes redirectAttributes) {
         motoService.delete(id);
-        model.addAttribute("msg", "Moto removida com sucesso");
+        redirectAttributes.addFlashAttribute("msg", "Moto removida com sucesso");
         return "redirect:/index";
     }
 
     @GetMapping("/editar")
-    public String editarMoto(@RequestParam("id") String id, Model model) {
-        Optional<Moto> motoOpt = motoService.findById(id);
-        if (motoOpt.isPresent()) {
-            Moto moto = motoOpt.get();
-            model.addAttribute("moto", moto);
+    public String getEditarPage(@RequestParam("id") String id, Model model) {
+        Optional<Moto> moto = motoService.findById(id);
+        if (moto.isPresent()) {
+            model.addAttribute("moto", moto.get());
             return "editarMoto";
         } else {
-            return "redirect:/admin?error=Moto not found";
+            model.addAttribute("msg", "Moto não encontrada");
+            return "redirect:/index";
         }
-}
+    }
 }

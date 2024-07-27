@@ -51,12 +51,10 @@ public class CarrinhoController {
             return "redirect:/index";
         }
 
-        // Filtra itens deletados do carrinho
         List<Moto> carrinhoFiltrado = carrinho.stream()
                 .filter(moto -> moto.getIsDeleted() == null)
                 .collect(Collectors.toList());
 
-        // Atualiza o carrinho na sessão
         session.setAttribute("carrinho", carrinhoFiltrado);
 
         model.addAttribute("carrinho", carrinhoFiltrado);

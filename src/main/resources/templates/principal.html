@@ -123,5 +123,11 @@
     <!-- /SECTION -->
 
     <footer th:replace="fragments/footer :: footer"></footer>
+
+    <script th:if="${msg}">
+        setTimeout(function() {
+            window.location.href = "/index";
+        }, 2000);
+    </script>
 </body>
 </html>

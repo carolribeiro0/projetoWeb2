@@ -39,6 +39,14 @@
         </div>
     </header>
 
+    <div th:if="${msg}" class="alert alert-success">
+        <p th:text="${msg}"></p>
+    </div>
+
+    <div th:if="${message}" class="alert alert-info" role="alert">
+        <span th:text="${message}"></span>
+    </div>
+    
     <!-- Admin Section -->
     <div class="section">
         <div class="container">
@@ -79,5 +87,12 @@
     </div>
 
     <footer th:replace="fragments/footer :: footer"></footer>
+
+    <script th:if="${msg}">
+        setTimeout(function() {
+            window.location.href = "/admin";
+        }, 2000);
+    </script>
+
 </body>
 </html>

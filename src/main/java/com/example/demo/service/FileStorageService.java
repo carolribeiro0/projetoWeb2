@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @Service
@@ -20,15 +21,23 @@ public class FileStorageService {
 
     public void init() {
         try {
-            Files.createDirectory(root);
+            if (!Files.exists(root)) {
+                Files.createDirectory(root);
+            }
         } catch (IOException e) {
             throw new RuntimeException("Could not initialize folder for upload!");
         }
     }
 
-    public void save(MultipartFile file) {
+    public String save(MultipartFile file) {
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            String originalFilename = file.getOriginalFilename();
+            String uniqueFilename = UUID.randomUUID().toString() + "_" + originalFilename;
+
+            Path destinationFile = this.root.resolve(uniqueFilename);
+            Files.copy(file.getInputStream(), destinationFile);
+
+            return uniqueFilename;
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
@@ -55,7 +64,9 @@ public class FileStorageService {
 
     public Stream<Path> loadAll() {
         try {
-            return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
+            return Files.walk(this.root, 1)
+                        .filter(path -> !path.equals(this.root))
+                        .map(this.root::relativize);
         } catch (IOException e) {
             throw new RuntimeException("Could not load the files!");
         }
