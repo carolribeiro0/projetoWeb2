@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-dollar"></i> BR</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Minha conta</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Nome Usuário</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Entrar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <a href="#" class="logo">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="header-ctn">
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Section -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Administração de Motos</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Preço</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="moto : ${motos}">
+                                <td><img th:src="@{'/uploads/' + ${moto.imageUri}}" alt="${moto.marca}" style="width: 100px;"></td>
+                                <td th:text="${moto.marca}">Marca</td>
+                                <td th:text="${moto.modelo}">Modelo</td>
+                                <td th:text="'R$'+${moto.preco}">Preço</td>
+                                <td>
+                                    <a th:href="@{/editar(id=${moto.id})}" class="btn btn-primary">Editar</a>
+                                    <a th:href="@{/deletar(id=${moto.id})}" class="btn btn-danger">Deletar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="/cadastro" class="btn btn-success">Adicionar Nova Moto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

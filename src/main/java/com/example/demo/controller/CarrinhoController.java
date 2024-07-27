@@ -26,13 +26,11 @@ public class CarrinhoController {
 
     @GetMapping("/adicionarCarrinho")
     public String adicionarAoCarrinho(@RequestParam("id") String id, HttpSession session, Model model) {
-        // Obtém o carrinho da sessão ou cria um novo se não existir
         List<Moto> carrinho = (List<Moto>) session.getAttribute("carrinho");
         if (carrinho == null) {
             carrinho = new ArrayList<>();
         }
 
-        // Encontra o moto pelo ID
         Optional<Moto> motoOpt = motoService.findById(id);
         if (motoOpt.isPresent()) {
             Moto moto = motoOpt.get();
@@ -48,7 +46,6 @@ public class CarrinhoController {
         List<Moto> carrinho = (List<Moto>) session.getAttribute("carrinho");
     
         if (carrinho == null || carrinho.isEmpty()) {
-            // Adiciona uma mensagem de flash attribute para a redireção
             redirectAttributes.addFlashAttribute("message", "Não existem itens no carrinho");
             return "redirect:/index";
         }

@@ -1,144 +1,129 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: head"></head>
-	<body>
-		<!-- HEADER -->
-		<header>
-			<!-- TOP HEADER -->
-			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> BR</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> Minha conta</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> Nome Usuário</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> Entrar</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- /TOP HEADER -->
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- TOP HEADER -->
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-dollar"></i> BR</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Minha conta</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Nome Usuário</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Entrar</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /TOP HEADER -->
 
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
-								</a>
-							</div>
-						</div>
-						<!-- /LOGO -->
+        <!-- MAIN HEADER -->
+        <div id="header">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <!-- LOGO -->
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <a href="#" class="logo">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /LOGO -->
 
-						<!-- ACCOUNT -->
-						<div class="header-ctn" >
-								<!-- Cart -->
-								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="/verCarrinho" aria-expanded="true">
-										<i class="fa fa-shopping-cart"></i>
-										<span>Meu carrinho</span>
-										<div class="qty" th:text="${quantidadeCarrinho}">0</div>
-									</a>
-								</div>
-								<!-- /Cart -->
-								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Menu</span>
-									</a>
-								</div>
-								<!-- /Menu Toogle -->
-						</div>
-						<!-- /ACCOUNT -->
-					</div>
-					<!-- row -->
-				</div>
-				<!-- container -->
-			</div>
-			<!-- /MAIN HEADER -->
-		</header>
-		<!-- /HEADER -->
+                    <!-- ACCOUNT -->
+                    <div class="header-ctn">
+                        <!-- Cart -->
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/verCarrinho" aria-expanded="true">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Meu carrinho</span>
+                                <div class="qty" th:text="${quantidadeCarrinho}">0</div>
+                            </a>
+                        </div>
+                        <!-- /Cart -->
 
-		<!-- Mensagem de sucesso -->
-		<div th:if="${msg}" class="alert alert-success">
-		<p th:text="${msg}"></p>
-		</div>
-		<!-- Mensagem Flash -->
-		<div th:if="${message}" class="alert alert-info" role="alert">
-			<span th:text="${message}"></span>
-		</div>
+                        <!-- Menu Toogle -->
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                        <!-- /Menu Toogle -->
+                    </div>
+                    <!-- /ACCOUNT -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
 
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
+    <!-- Mensagem de sucesso -->
+    <div th:if="${msg}" class="alert alert-success">
+        <p th:text="${msg}"></p>
+    </div>
 
+    <!-- Mensagem Flash -->
+    <div th:if="${message}" class="alert alert-info" role="alert">
+        <span th:text="${message}"></span>
+    </div>
 
-					<!-- Products tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs" >
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1" style="display:flex; flex-flow:row wrap">
-										<!-- product -->
-										<div th:each="moto : ${motos}" class="product"  style="width: 31.5%; margin:10px">
-											<div class="product-img">
-												<img th:src="@{'/uploads/' + ${moto.imageUri}}" alt="${moto.marca}">
-											</div>
-											<div class="product-body">
-												<p class="product-brand" th:text="${moto.marca}">Marca</p>
-												<h3 class="product-name"><a href="#" th:text="${moto.modelo}">Modelo</a></h3>
-												<h4 class="product-price" th:text="'R$'+${moto.preco}">Preço</h4> <!-- Exibindo o preço -->
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a th:href="@{/adicionarCarrinho(id=${moto.id})}" class="add-to-cart-btn">Adicionar ao carrinho</a>
-											</div>
-										</div>
-										<!-- /product -->
-									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
-								</div>
-								<!-- /tab -->
-							</div>
-						</div>
-					</div>
-					<!-- Products tab & slick -->
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab1" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1" style="display:flex; flex-flow:row wrap">
+                                    <!-- product -->
+                                    <div th:each="moto : ${motos}" class="product" style="width: 31.5%; margin:10px">
+                                        <div class="product-img">
+                                            <img th:src="@{'/uploads/' + ${moto.imageUri}}" alt="${moto.marca}">
+                                        </div>
+                                        <div class="product-body">
+                                            <p class="product-brand" th:text="${moto.marca}">Marca</p>
+                                            <h3 class="product-name"><a href="#" th:text="${moto.modelo}">Modelo</a></h3>
+                                            <h4 class="product-price" th:text="'R$'+${moto.preco}">Preço</h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a th:href="@{/adicionarCarrinho(id=${moto.id})}" class="add-to-cart-btn">Adicionar ao carrinho</a>
+                                        </div>
+                                    </div>
+                                    <!-- /product -->
+                                </div>
+                                <div id="slick-nav-1" class="products-slick-nav"></div>
+                            </div>
+                            <!-- /tab -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Products tab & slick -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
 
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
-		<script>
-			// Verifica se o cookie de sucesso está definido e redireciona
-			document.addEventListener("DOMContentLoaded", function() {
-				var successCookie = document.cookie.split('; ').find(row => row.startsWith('success='));
-				if (successCookie && successCookie.split('=')[1] === 'true') {
-					// Remove o cookie
-					document.cookie = "success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-					// Redireciona após 3 segundos
-					setTimeout(function() {
-						window.location.href = '/index';
-					}, 3000);
-				}
-			});
-		</script>
-		<footer th:replace="fragments/footer :: footer"></footer>
-	</body>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
 </html>

@@ -39,16 +39,14 @@ public class MotoController {
 
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
         Cookie visitaCookie = new Cookie("visita", currentDateTime);
-        visitaCookie.setMaxAge(24 * 60 * 60); // 24 horas
-        visitaCookie.setPath("/"); 
+        visitaCookie.setMaxAge(24 * 60 * 60);
+        visitaCookie.setPath("/");
         response.addCookie(visitaCookie);
 
         model.addAttribute("motos", motos);
 
-        // Obtém o carrinho da sessão
         List<Moto> carrinho = (List<Moto>) session.getAttribute("carrinho");
 
-        // Adiciona a quantidade de itens no carrinho ao modelo
         if (carrinho != null) {
             model.addAttribute("quantidadeCarrinho", carrinho.size());
         } else {
@@ -66,24 +64,28 @@ public class MotoController {
 
     @PostMapping("/salvar")
     public ModelAndView processCadastro(@ModelAttribute @Valid Moto moto, Errors errors, @RequestParam("file") MultipartFile file) {
-    
         if (errors.hasErrors()) {
             return new ModelAndView("cadastroMotos");
         }
-    
+
         if (!file.isEmpty()) {
             String filename = file.getOriginalFilename();
             fileStorageService.save(file);
             moto.setImageUri(filename);
         }
-    
+
         motoService.create(moto);
-    
+
         ModelAndView modelAndView = new ModelAndView("principal");
         modelAndView.addObject("msg", "Cadastro realizado com sucesso");
         modelAndView.addObject("motos", motoService.findAll());
         return modelAndView;
     }
-    
-    
+
+    @GetMapping("/admin")
+    public String adminPage(Model model) {
+        List<Moto> motos = motoService.findAllNotDeleted();
+        model.addAttribute("motos", motos);
+        return "admin";
+    }
 }
