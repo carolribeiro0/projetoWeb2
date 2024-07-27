@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <form th:action="@{/cadusuario}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <label for="isAdmin">Admin:</label>
+            <input type="checkbox" id="isAdmin" name="isAdmin">
+            <input type="hidden" name="isAdmin" value="false">
+        </div>
+        <div>
+            <button type="submit">Cadastrar</button>
+        </div>
+    </form>
+</body>
+</html>
+
