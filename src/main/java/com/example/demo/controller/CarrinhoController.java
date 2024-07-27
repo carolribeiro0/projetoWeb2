@@ -46,6 +46,7 @@ public class CarrinhoController {
         List<Moto> carrinho = (List<Moto>) session.getAttribute("carrinho");
     
         if (carrinho == null || carrinho.isEmpty()) {
+
             redirectAttributes.addFlashAttribute("message", "Não existem itens no carrinho");
             return "redirect:/index";
         }

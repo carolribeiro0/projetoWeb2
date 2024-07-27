@@ -46,8 +46,8 @@ public class Moto {
         marca.toUpperCase();
     }
     
-    public void setIsDeleted() {
-        this.isDeleted = LocalDateTime.now();
+    public void setIsDeleted(LocalDateTime isDeleted) {
+        this.isDeleted = isDeleted;
     }
     
     public LocalDateTime getIsDeleted() {

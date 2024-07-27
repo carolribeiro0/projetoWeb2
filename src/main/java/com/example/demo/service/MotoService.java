@@ -6,6 +6,7 @@ import com.example.demo.repository.MotoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class MotoService {
     public void delete(String id) {
         Optional<Moto> moto = repository.findById(id);
         moto.ifPresent(m -> {
-            m.setIsDeleted();
+            m.setIsDeleted(LocalDateTime.now());
             repository.save(m);
         });
     }
@@ -49,7 +50,6 @@ public class MotoService {
                 .filter(moto -> moto.getIsDeleted() == null)
                 .toList();
 
-        // Log para verificar o que está sendo retornado
         logger.info("Motos encontradas: {}", motos);
 
         return motos;

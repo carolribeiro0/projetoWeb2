@@ -88,4 +88,11 @@ public class MotoController {
         model.addAttribute("motos", motos);
         return "admin";
     }
+
+    @GetMapping("/deletar")
+    public String deleteMoto(@RequestParam("id") String id, Model model) {
+        motoService.delete(id);
+        model.addAttribute("msg", "Moto removida com sucesso");
+        return "redirect:/index";
+    }
 }
