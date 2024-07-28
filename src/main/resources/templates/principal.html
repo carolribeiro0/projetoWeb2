@@ -9,9 +9,18 @@
             <div class="container">
                 <ul class="header-links pull-right">
                     <li><a href="#"><i class="fa fa-dollar"></i> BR</a></li>
-                    <li><a href="#"><i class="fa fa-user-o"></i> Minha conta</a></li>
-                    <li><a href="#"><i class="fa fa-user-o"></i> Nome Usuário</a></li>
-                    <li><a th:href="@{/login}"><i class="fa fa-user-o"></i> Entrar</a></li>
+                    <li th:if="${username != null}">
+                        <a href="#"><i class="fa fa-user-o"></i> Minha conta</a>
+                    </li>
+                    <li th:if="${username != null}">
+                        <a href="#"><i class="fa fa-user-o"></i> <span th:text="${username}">Nome Usuário</span></a>
+                    </li>
+                    <li th:if="${username != null}">
+                        <a th:href="@{/logout}"><i class="fa fa-sign-out"></i> Sair</a>
+                    </li>
+                    <li th:if="${username == null}">
+                        <a th:href="@{/login}"><i class="fa fa-user-o"></i> Entrar</a>
+                    </li>
                 </ul>
             </div>
         </div>

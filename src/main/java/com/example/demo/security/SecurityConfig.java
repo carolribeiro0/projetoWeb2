@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .permitAll()
             )
             .logout(logout -> logout
-                .logoutUrl("/logout")
+                .logoutUrl("/perform_logout")
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
             );

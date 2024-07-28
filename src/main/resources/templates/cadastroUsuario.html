@@ -1,27 +1,106 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/header :: head">
     <title>Cadastro de Usuário</title>
 </head>
 <body>
-    <form th:action="@{/cadusuario}" method="post">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
+    <!-- HEADER -->
+    <header>
+        <!-- TOP HEADER -->
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-dollar"></i> BR</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Minha conta</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Nome Usuário</a></li>
+                    <li><a th:href="@{/login}"><i class="fa fa-user-o"></i> Entrar</a></li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
+        <!-- /TOP HEADER -->
+
+        <!-- MAIN HEADER -->
+        <div id="header">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <!-- LOGO -->
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <a href="#" class="logo">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /LOGO -->
+
+                    <!-- ACCOUNT -->
+                    <div class="header-ctn">
+                        <!-- Cart -->
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/verCarrinho" aria-expanded="true">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Meu carrinho</span>
+                                <div class="qty" th:text="${quantidadeCarrinho}">0</div>
+                            </a>
+                        </div>
+                        <!-- /Cart -->
+
+                        <!-- Menu Toogle -->
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                        <!-- /Menu Toogle -->
+                    </div>
+                    <!-- /ACCOUNT -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
         </div>
-        <div>
-            <label for="isAdmin">Admin:</label>
-            <input type="checkbox" id="isAdmin" name="isAdmin">
-            <input type="hidden" name="isAdmin" value="false">
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+
+    <!-- USER REGISTRATION SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="register-form">
+                        <form th:action="@{/cadusuario}" method="post">
+                            <div class="form-group">
+                                <label for="username">Usuário:</label>
+                                <input type="text" id="username" name="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Senha:</label>
+                                <input type="password" id="password" name="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="isAdmin">Administrador:</label>
+                                <input type="checkbox" id="isAdmin" name="isAdmin">
+                                <input type="hidden" name="isAdmin" value="false">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
         </div>
-        <div>
-            <button type="submit">Cadastrar</button>
-        </div>
-    </form>
+        <!-- /container -->
+    </div>
+    <!-- /USER REGISTRATION SECTION -->
+
+    <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
-

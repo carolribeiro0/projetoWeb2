@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +56,14 @@ public class MotoController {
             model.addAttribute("quantidadeCarrinho", carrinho.size());
         } else {
             model.addAttribute("quantidadeCarrinho", 0);
+        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !(authentication.getPrincipal() instanceof String)) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            model.addAttribute("username", userDetails.getUsername());
+        } else {
+            model.addAttribute("username", null);
         }
 
         return "principal";
@@ -109,6 +120,16 @@ public class MotoController {
         } else {
             model.addAttribute("msg", "Moto não encontrada");
             return "redirect:/index";
+        }
+    }
+
+    private void addUserInfoToModel(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !(authentication.getPrincipal() instanceof String)) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            model.addAttribute("username", userDetails.getUsername());
+        } else {
+            model.addAttribute("username", null);
         }
     }
 }
